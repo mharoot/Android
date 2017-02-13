@@ -59,10 +59,16 @@ public class Main extends AppCompatActivity {
                 Sensor sensor = event.sensor;
                 if (sensor.getType() == Sensor.TYPE_PROXIMITY) {
 
-                    if (event.values[0] > 3)
-                        currentProximity.setText( "Far: "+String.valueOf(event.values[0]) );
-                    else
-                        currentProximity.setText( "Close: "+String.valueOf(event.values[0]) );
+                    String txt = String.valueOf(event.values[0]);
+                    if (event.values[0] > 3) {
+                        currentProximity.setText(txt);
+                        maxProximity.setText(txt);
+                    }
+                    else {
+                        currentProximity.setText(txt);
+                        minProximity.setText(txt);
+
+                    }
                 } else if(sensor.getType() == Sensor.TYPE_LIGHT) {
 
                     currentLight.setText(String.valueOf(event.values[0]));
@@ -109,11 +115,15 @@ public class Main extends AppCompatActivity {
         if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
             // success! we have an accelerometer
             sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
-            sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SensorManager.SENSOR_DELAY_NORMAL);
             vibrateThreshold = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER).getMaximumRange() / 2;
-        } else {
-            // fai! we dont have an accelerometer!
+        }
+
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT) != null) {
+            sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY) != null) {
+            sensorManager.registerListener(sensorListener, sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY), SensorManager.SENSOR_DELAY_NORMAL);
         }
 
         //initialize vibration
@@ -124,32 +134,28 @@ public class Main extends AppCompatActivity {
 
     public void initializeViews() {
         currentLight = (TextView) findViewById(R.id.currentLight);
-        currentProximity = (TextView) findViewById(R.id.proximity);
+        currentProximity = (TextView) findViewById(R.id.currentProximity);
         currentX = (TextView) findViewById(R.id.currentX);
         currentY = (TextView) findViewById(R.id.currentY);
         currentZ = (TextView) findViewById(R.id.currentZ);
 
         maxLight = (TextView) findViewById(R.id.maxLight);
+        maxProximity = (TextView) findViewById(R.id.maxProximity);
         maxX = (TextView) findViewById(R.id.maxX);
         maxY = (TextView) findViewById(R.id.maxY);
         maxZ = (TextView) findViewById(R.id.maxZ);
 
         minLight = (TextView) findViewById(R.id.minLight);
+        minProximity = (TextView) findViewById(R.id.minProximity);
         minX = (TextView) findViewById(R.id.minX);
         minY = (TextView) findViewById(R.id.minY);
         minZ = (TextView) findViewById(R.id.minZ);
 
         phoneSensors = (TextView) findViewById(R.id.phoneSensors);
-
         phoneSensors.setText(new SensorsHandler(this).getAvailableSensors());
-
-        currentProximity.setText("Far: 100.0");
 
 
     }
-
-
-
 
 
     //onResume() register the accelerometer for listening the events
