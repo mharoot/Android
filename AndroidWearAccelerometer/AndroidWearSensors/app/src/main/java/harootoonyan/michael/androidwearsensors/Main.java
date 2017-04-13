@@ -21,7 +21,7 @@ public class Main extends Activity {
             public void onLayoutInflated(WatchViewStub stub) {
                 Context mContext = stub.getContext();
                 SensorsHandler handler = new SensorsHandler(mContext);
-                String txt = handler.getAvailableSensors();
+                handler.getAvailableSensors();
 
 
             }
