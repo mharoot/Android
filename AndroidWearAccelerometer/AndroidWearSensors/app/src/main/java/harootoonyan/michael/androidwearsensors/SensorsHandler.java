@@ -145,7 +145,7 @@ public class SensorsHandler {
     }
 
 
-    public String getAvailableSensors() {
+    public void getAvailableSensors() {
         String newline = System.getProperty("line.separator");
         String textView = ("You have the following sensors on this phone:"+newline+newline);
 
@@ -206,7 +206,7 @@ public class SensorsHandler {
 
 
 
-        return textView;
+        availableSensors.setText(textView);
 
     }
 
