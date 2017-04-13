@@ -15,6 +15,7 @@ import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -45,39 +46,46 @@ public class SensorsHandler {
     private TextView availableSensors, currentX, currentY, currentZ,
             maxX, maxY, maxZ, minX, minY, minZ;
 
+    private DecimalFormat _DF = new DecimalFormat();
+    private int DECIMAL_PLACES = 2;
+
+
     public SensorsHandler (Context context) {
         this.mContext = context;
         initView();
+        _DF.setMaximumFractionDigits(DECIMAL_PLACES);
         mSensorManager = (SensorManager) this.mContext.getSystemService(Context.SENSOR_SERVICE);
         listenForChanges();
     }
 
+
+    // reset the current values each time to grab new values.
     public void displayCleanValues() {
-        currentX.setText("0.0");
-        currentY.setText("0.0");
-        currentZ.setText("0.0");
+        currentX.setText("0.00");
+        currentY.setText("0.00");
+        currentZ.setText("0.00");
     }
 
     // display the current x,y,z accelerometer values
     public void displayCurrentValues() {
-        currentX.setText(Float.toString(deltaX));
-        currentY.setText(Float.toString(deltaY));
-        currentZ.setText(Float.toString(deltaZ));
+        currentX.setText(_DF.format(deltaX));
+        currentY.setText(_DF.format(deltaY));
+        currentZ.setText(_DF.format(deltaZ));
     }
 
     // display the max x,y,z accelerometer values
     public void displayMaxValues() {
         if (deltaX > deltaXMax) {
             deltaXMax = deltaX;
-            maxX.setText(Float.toString(deltaXMax));
+            maxX.setText(_DF.format(deltaXMax));
         }
         if (deltaY > deltaYMax) {
             deltaYMax = deltaY;
-            maxY.setText(Float.toString(deltaYMax));
+            maxY.setText(_DF.format(deltaYMax));
         }
         if (deltaZ > deltaZMax) {
             deltaZMax = deltaZ;
-            maxZ.setText(Float.toString(deltaZMax));
+            maxZ.setText(_DF.format(deltaZMax));
         }
 
     }
@@ -86,15 +94,15 @@ public class SensorsHandler {
     public void displayMinValues() {
         if (deltaX < deltaXMin) {
             deltaXMin = deltaX;
-            minX.setText(Float.toString(deltaXMin));
+            minX.setText(_DF.format(deltaXMin));
         }
         if (deltaY < deltaYMin) {
             deltaYMin = deltaY;
-            minY.setText(Float.toString(deltaYMin));
+            minY.setText(_DF.format(deltaYMin));
         }
         if (deltaZ < deltaZMin) {
             deltaZMin = deltaZ;
-            minZ.setText(Float.toString(deltaZMin));
+            minZ.setText(_DF.format(deltaZMin));
         }
     }
 

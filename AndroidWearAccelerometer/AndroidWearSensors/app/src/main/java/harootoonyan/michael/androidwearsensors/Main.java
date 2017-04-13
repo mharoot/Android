@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 public class Main extends Activity {
 
-    private TextView availableSensors, currentLight, currentProximity, currentX, currentY, currentZ,
-    maxX, maxY, maxZ, maxLight, minX, minY, minZ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +20,9 @@ public class Main extends Activity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 Context mContext = stub.getContext();
-                availableSensors = (TextView) stub.findViewById(R.id.availableSensors);
                 SensorsHandler handler = new SensorsHandler(mContext);
                 String txt = handler.getAvailableSensors();
-                availableSensors.setText(txt);
+
 
             }
         });
