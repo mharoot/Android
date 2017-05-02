@@ -1,44 +1,44 @@
 package com.androidweardocs.wearablemessage;
 
 
-        import android.annotation.TargetApi;
-        import android.os.Build;
-        import android.os.Environment;
-        import android.support.v7.app.ActionBarActivity;
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.google.android.gms.common.ConnectionResult;
-        import com.google.android.gms.common.api.GoogleApiClient;
-        import com.google.android.gms.wearable.MessageApi;
-        import com.google.android.gms.wearable.Node;
-        import com.google.android.gms.wearable.NodeApi;
-        import com.google.android.gms.wearable.Wearable;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.NodeApi;
+import com.google.android.gms.wearable.Wearable;
 
-        import org.w3c.dom.Text;
+import org.w3c.dom.Text;
 
-        import java.io.BufferedInputStream;
-        import java.io.BufferedOutputStream;
-        import java.io.BufferedReader;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.FileOutputStream;
-        import java.io.FileReader;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.InputStreamReader;
-        import java.io.OutputStreamWriter;
-        import java.io.PrintStream;
-        import java.io.PrintWriter;
-        import java.io.UnsupportedEncodingException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 
 public class MessageActivity extends AppCompatActivity
@@ -85,10 +85,10 @@ public class MessageActivity extends AppCompatActivity
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onConnected(Bundle connectionHint) {
-        String message = "";
+        String message = mStringData.STRING_DATA;
         try {
             PrintWriter writer = new PrintWriter("storage/sdcard0/test.txt", "UTF-8");
-            writer.println("Yo Homie, This that west side!");
+            writer.println(message);
             writer.close();
         } catch (IOException e) {
             // do something
