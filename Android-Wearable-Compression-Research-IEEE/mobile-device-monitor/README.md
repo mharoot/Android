@@ -1,0 +1,1 @@
+All of this data is coming from the mobile-devices side.  Note that power tutor doesn't work for the wearable device and is to be used with the mobile device only.

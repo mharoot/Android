@@ -1,0 +1,18 @@
+Mobile Decoding Huffman Results
+
+Trial 1: 
+	CP = 915mW
+	AP = 579mw
+Trial 2:
+	CP = 881mW
+	AP = 667mw
+Trial 3:
+	CP = 1110mW
+	AP = 808mw
+Trial 4:
+	CP = 940mW
+	AP = 888mw
+
+Trial's Average:
+	CP = 961.5mW
+	AP = 735.5mW
